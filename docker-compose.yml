@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    restart: always
+
+  scraper:
+    build:
+      context: .
+      dockerfile: scraper/Dockerfile
+    container_name: scraper
+    depends_on:
+      - mongodb
+    restart: on-failure
+    tty: true
+    stdin_open: true
+
+  generador:
+    build:
+      context: .
+      dockerfile: generador/Dockerfile
+    container_name: generador
+    depends_on:
+      - mongodb
+    restart: on-failure
+    tty: true
+    stdin_open: true
+
+  monitor:
+    build:
+      context: .
+      dockerfile: monitor/Dockerfile
+    container_name: monitor
+    ports:
+      - "5000:5000"
+    restart: on-failure
+    tty: true
+    stdin_open: true

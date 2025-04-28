@@ -2,19 +2,23 @@ import time
 import random
 import numpy as np
 import requests
+import redis
 from pymongo import MongoClient
 
-# Conexión a MongoDB (en Docker)
+# Conexión a MongoDB
 client = MongoClient("mongodb://mongodb:27017/")
 db = client["waze_db"]
 coleccion = db["eventos"]
 
+# Conexión a Redis
+r = redis.Redis(host='redis', port=6379, decode_responses=True)
+
 # Parámetros
-MODO = "normal"  # Cambiado a "normal" o "poisson"
-LAMBDA = 5       # Solo se usa si vuelves a modo poisson
-MEDIA_NORMAL = 1.0  # Media de segundos entre eventos para Normal
-STD_DEV_NORMAL = 0.2  # Desviación estándar para Normal (pequeña variabilidad)
-MONITOR_URL = "http://monitor:5000/evento"  # URL del monitor Flask
+MODO = "poisson"  # O "poisson" o "exponencial"
+LAMBDA = 5
+MEDIA_NORMAL = 1.0
+STD_DEV_NORMAL = 0.2
+MONITOR_URL = "http://monitor:5000/evento"
 
 def buscar_eventos_random(cantidad):
     total = coleccion.count_documents({})
@@ -29,29 +33,39 @@ def buscar_eventos_random(cantidad):
 
 def enviar_eventos(eventos):
     for evento in eventos:
-        print(f"[GENERADOR] Evento enviado: {evento['_id']} | Tipo: {evento.get('type', 'unknown')}")
+        evento_id = str(evento["_id"])
+        print(f"[GENERADOR] Evento enviado: {evento_id} | Tipo: {evento.get('type', 'unknown')}")
         try:
+            # Monitor web
             requests.post(MONITOR_URL, timeout=0.5)
+            
+            # Cache Redis
+            if r.exists(evento_id):
+                r.incr("hits")
+                print(f"[CACHE] HIT {evento_id}")
+            else:
+                r.incr("misses")
+                r.set(evento_id, 1, ex=3600)  # 1 hora TTL
+                print(f"[CACHE] MISS {evento_id}")
+
         except Exception as e:
-            print(f"[GENERADOR] Error al enviar al monitor: {e}")
+            print(f"[GENERADOR] Error al enviar: {e}")
+
+def generador_normal():
+    while True:
+        delay = np.random.normal(MEDIA_NORMAL, STD_DEV_NORMAL)
+        delay = max(0.01, delay)
+        eventos = buscar_eventos_random(1)
+        enviar_eventos(eventos)
+        time.sleep(delay)
 
 def generador_poisson():
-    """Genera eventos usando distribución de Poisson."""
     while True:
         n_eventos = np.random.poisson(LAMBDA)
         if n_eventos > 0:
             eventos = buscar_eventos_random(n_eventos)
             enviar_eventos(eventos)
         time.sleep(1)
-
-def generador_normal():
-    """Genera eventos usando distribución Normal."""
-    while True:
-        delay = np.random.normal(MEDIA_NORMAL, STD_DEV_NORMAL)
-        delay = max(0.01, delay)  # Evitar delays negativos o muy chicos hola
-        eventos = buscar_eventos_random(1)
-        enviar_eventos(eventos)
-        time.sleep(delay)
 
 def main():
     print(f"[GENERADOR] Iniciando en modo: {MODO}")
@@ -60,7 +74,7 @@ def main():
     elif MODO == "normal":
         generador_normal()
     else:
-        print("[GENERADOR] Error: modo inválido. Usa 'poisson' o 'normal'.")
+        print("[GENERADOR] Error: modo inválido.")
 
 if __name__ == "__main__":
     main()

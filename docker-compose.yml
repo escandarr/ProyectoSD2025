@@ -26,6 +26,7 @@ services:
     container_name: generador
     depends_on:
       - mongodb
+      - redis
     restart: on-failure
     tty: true
     stdin_open: true
@@ -37,6 +38,26 @@ services:
     container_name: monitor
     ports:
       - "5000:5000"
+    restart: on-failure
+    tty: true
+    stdin_open: true
+
+  redis:
+    image: redis:7.2
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  cache_monitor:
+    build:
+      context: .
+      dockerfile: cache_monitor/Dockerfile
+    container_name: cache_monitor
+    ports:
+      - "7000:7000"
+    depends_on:
+      - redis
     restart: on-failure
     tty: true
     stdin_open: true

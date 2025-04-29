@@ -14,15 +14,17 @@ En este repositorio se encuentran todos los códigos implementados para poder le
 ## Instrucciones de uso
 
 En la terminal utilizar los siguientes comandos:
+
+* Para clonar repositorio:
 ```bash
  git clone https://github.com/escandarr/ProyectoSD2025.git 
 ```
 
-Desde la carpeta ´ProyectoSD2025´, levantar los contenedores con:
+* Desde la carpeta ´ProyectoSD2025´, levantar los contenedores con:
 ```bash
 sudo docker compose up --build
 ```
-Para ver la cantidad de registros desde la terminal del modulo de almacenamiento (MongoDB) se utiliza los siguientes comandos:
+* Para ver la cantidad de registros desde la terminal del modulo de almacenamiento (MongoDB) se utiliza los siguientes comandos:
 ```bash
 sudo docker exec -it mongodb mongosh
 use waze_db

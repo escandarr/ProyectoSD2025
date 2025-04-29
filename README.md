@@ -15,12 +15,12 @@ En este repositorio se encuentran todos los códigos implementados para poder le
 
 En la terminal utilizar los siguientes comandos:
 ```bash
- git clone 
+ git clone https://github.com/escandarr/ProyectoSD2025.git 
 ```
 
 Desde la carpeta Tarea3_SistemasDistribuidos, levantar los contenedores.
 ```bash
-docker-compose up -d
+sudo docker compose up --build
 ```
 
 

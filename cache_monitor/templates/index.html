@@ -1,5 +1,3 @@
-<!-- cache_monitor/templates/index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +19,7 @@
         <li><b>Total Consultas:</b> <span id="total">0</span></li>
         <li><b>Hit Rate (%):</b> <span id="hit_rate">0</span>%</li>
         <li><b>Miss Rate (%):</b> <span id="miss_rate">0</span>%</li>
+        <li><b>Política de Cache:</b> <span id="politica">unknown</span></li> <!-- NUEVA LINEA -->
     </ul>
 
     <script>
@@ -47,6 +46,7 @@
                     document.getElementById('total').textContent = data.total_consultas;
                     document.getElementById('hit_rate').textContent = data.hit_rate;
                     document.getElementById('miss_rate').textContent = data.miss_rate;
+                    document.getElementById('politica').textContent = data.politica; // NUEVO
 
                     grafico.data.datasets[0].data = [data.hits, data.misses];
                     grafico.update();

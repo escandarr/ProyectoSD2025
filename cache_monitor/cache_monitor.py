@@ -18,12 +18,15 @@ def stats():
     total = hits + misses
     hit_rate = (hits / total) * 100 if total > 0 else 0
     miss_rate = (misses / total) * 100 if total > 0 else 0
+    politica = r.config_get('maxmemory-policy').get('maxmemory-policy', 'unknown')
+
     return jsonify({
         "hits": hits,
         "misses": misses,
         "total_consultas": total,
         "hit_rate": round(hit_rate, 2),
-        "miss_rate": round(miss_rate, 2)
+        "miss_rate": round(miss_rate, 2),
+        "politica": politica
     })
 
 if __name__ == '__main__':

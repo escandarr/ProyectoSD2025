@@ -24,3 +24,7 @@ sudo docker compose up --build
 ```
 
 
+para poder ver la los graficos ir a 
+cache: http://localhost:7000/
+trafico: http://localhost:5000/
+

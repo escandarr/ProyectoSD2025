@@ -18,13 +18,20 @@ En la terminal utilizar los siguientes comandos:
  git clone https://github.com/escandarr/ProyectoSD2025.git 
 ```
 
-Desde la carpeta ´ProyectoSD2025´, levantar los contenedores.
+Desde la carpeta ´ProyectoSD2025´, levantar los contenedores con:
 ```bash
 sudo docker compose up --build
 ```
+Para ver la cantidad de registros desde la terminal del modulo de almacenamiento (MongoDB) se utiliza los siguientes comandos:
+```bash
+sudo docker exec -it mongodb mongosh
+use waze_db
+db.eventos.countDocuments()
+```
 
 
-para poder ver la los graficos ir a 
-cache: http://localhost:7000/
-trafico: http://localhost:5000/
-
+Para poder ver la los graficos ir a de cache y trafico respectivamente:
+```bash
+http://localhost:7000/
+http://localhost:5000/
+```

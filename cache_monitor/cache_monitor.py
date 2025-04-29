@@ -1,10 +1,7 @@
-# cache_monitor/cache_monitor.py
-
 from flask import Flask, jsonify, render_template
 import redis
 
 app = Flask(__name__)
-
 r = redis.Redis(host='redis', port=6379, decode_responses=True)
 
 @app.route('/')
@@ -28,6 +25,11 @@ def stats():
         "miss_rate": round(miss_rate, 2),
         "politica": politica
     })
+
+@app.route('/reset', methods=['POST'])
+def reset():
+    r.flushall()
+    return jsonify({"status": "OK", "message": "✅ Cache y métricas reseteadas correctamente."})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=7000)

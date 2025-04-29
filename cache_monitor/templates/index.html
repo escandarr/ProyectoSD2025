@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Monitor de Cache - Hits/Misses</title>
+    <title>Monitor de Cache - Hits y Misses</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -19,8 +19,11 @@
         <li><b>Total Consultas:</b> <span id="total">0</span></li>
         <li><b>Hit Rate (%):</b> <span id="hit_rate">0</span>%</li>
         <li><b>Miss Rate (%):</b> <span id="miss_rate">0</span>%</li>
-        <li><b>Política de Cache:</b> <span id="politica">unknown</span></li> <!-- NUEVA LINEA -->
+        <li><b>Política de Cache:</b> <span id="politica">Desconocida</span></li>
     </ul>
+
+    <button onclick="resetCache()">🔄 Resetear cache y métricas</button>
+    <p id="status" style="font-weight: bold; color: green;"></p>
 
     <script>
         const ctx = document.getElementById('grafico').getContext('2d');
@@ -46,10 +49,19 @@
                     document.getElementById('total').textContent = data.total_consultas;
                     document.getElementById('hit_rate').textContent = data.hit_rate;
                     document.getElementById('miss_rate').textContent = data.miss_rate;
-                    document.getElementById('politica').textContent = data.politica; // NUEVO
+                    document.getElementById('politica').textContent = data.politica;
 
                     grafico.data.datasets[0].data = [data.hits, data.misses];
                     grafico.update();
+                });
+        }
+
+        function resetCache() {
+            fetch('/reset', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("status").textContent = data.message;
+                    actualizarDatos(); // actualizar inmediatamente
                 });
         }
 

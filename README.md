@@ -20,7 +20,7 @@ En la terminal utilizar los siguientes comandos:
  git clone https://github.com/escandarr/ProyectoSD2025.git 
 ```
 
-* Desde la carpeta ´ProyectoSD2025´, levantar los contenedores con:
+* Desde la carpeta *ProyectoSD2025*, levantar los contenedores con:
 ```bash
 sudo docker compose up --build
 ```

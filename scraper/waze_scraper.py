@@ -23,7 +23,7 @@ async def interceptar_eventos(page):
                 print(f"Error al procesar JSON: {e}")
 
     page.on("response", handle_response)
-    await asyncio.sleep(10)  # Esperamos 10s para asegurar la captura
+    await asyncio.sleep(10)  # Espera para asegurar la captura
     return last_data
 
 async def preparar_mapa(page):
@@ -55,7 +55,7 @@ async def capturar_eventos(playwright):
 
     await page.goto(
         "https://www.waze.com/es-419/live-map/",
-        wait_until="domcontentloaded",  # Más rápido y suficiente
+        wait_until="domcontentloaded", 
         timeout=120000  # 2 minutos máximo de espera
     )
 

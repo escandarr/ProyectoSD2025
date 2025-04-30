@@ -3,7 +3,7 @@
 from pymongo import MongoClient
 import random
 
-# Conexión a MongoDB (en Docker Compose, el servicio se llamará 'mongodb')
+# Conexión a MongoDB, en docker-compose el servicio se llama: 'mongodb'
 client = MongoClient("mongodb://mongodb:27017/")  
 db = client["waze_db"]
 coleccion = db["eventos"]

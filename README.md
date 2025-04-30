@@ -41,7 +41,7 @@ http://localhost:5000/
 ```
 ## Parámetros de configuración
 
-### Generador de tráfico (modificables en el código fuente):
+### Generador de tráfico (modificables en generador/generador.py):
 ```python
 MODO = "poisson"          # Opciones: "poisson" o "normal"
 LAMBDA = 5                # Parámetro para distribución Poisson

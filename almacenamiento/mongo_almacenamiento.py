@@ -1,5 +1,3 @@
-# scraper/almacenamiento.py
-
 from pymongo import MongoClient
 import random
 

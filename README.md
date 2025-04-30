@@ -30,9 +30,7 @@ sudo docker exec -it mongodb mongosh
 use waze_db
 db.eventos.countDocuments()
 ```
-
-
-Para poder ver la los graficos ir a de cache y trafico respectivamente:
+* Para poder ver la los graficos ir a de cache y trafico respectivamente:
 ```bash
 http://localhost:7000/
 ```
@@ -41,7 +39,7 @@ http://localhost:5000/
 ```
 ## Parámetros de configuración
 
-### Generador de tráfico (modificables en generador/generador.py):
+* Generador de tráfico (modificables en generador/generador.py):
 ```python
 MODO = "poisson"          # Opciones: "poisson" o "normal"
 LAMBDA = 5                # Parámetro para distribución Poisson
@@ -50,7 +48,7 @@ STD_DEV_NORMAL = 0.2      # Desviación estándar de la distribución Normal
 MONITOR_URL = "http://monitor:5000/evento"
 ```
 
-### Redis (configurado en docker-compose.yml):
+* Redis (configurado en docker-compose.yml):
 ```yaml
 redis:
   image: redis:7.2

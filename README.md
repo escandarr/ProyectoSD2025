@@ -39,3 +39,30 @@ http://localhost:7000/
 ```bash
 http://localhost:5000/
 ```
+## Parámetros de configuración
+
+### Generador de tráfico (modificables en el código fuente):
+```python
+MODO = "poisson"          # Opciones: "poisson" o "normal"
+LAMBDA = 5                # Parámetro para distribución Poisson
+MEDIA_NORMAL = 1.0        # Media de la distribución Normal
+STD_DEV_NORMAL = 0.2      # Desviación estándar de la distribución Normal
+MONITOR_URL = "http://monitor:5000/evento"
+```
+
+### Redis (configurado en docker-compose.yml):
+```yaml
+redis:
+  image: redis:7.2
+  container_name: redis
+  ports:
+    - "6379:6379"
+  command: >
+    redis-server
+    --maxmemory 100mb
+    --maxmemory-policy allkeys-lru
+  restart: always
+```
+
+- Política de cache: `allkeys-lru` `allkeys-lfu`
+- Tamaño máximo: `100MB` `50MB`

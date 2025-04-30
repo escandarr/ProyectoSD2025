@@ -29,7 +29,7 @@ def stats():
 @app.route('/reset', methods=['POST'])
 def reset():
     r.flushall()
-    return jsonify({"status": "OK", "message": "✅ Cache y métricas reseteadas correctamente."})
+    return jsonify({"status": "OK", "message": "Cache y métricas reseteadas correctamente."})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=7000)

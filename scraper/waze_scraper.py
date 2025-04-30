@@ -1,9 +1,7 @@
-# scraper/waze_scraper.py
-
 import asyncio
 from datetime import datetime
 from playwright.async_api import async_playwright
-from almacenamiento.mongo_almacenamiento import insertar_eventos, contar_eventos_db  # Módulo de almacenamiento con MongoDB
+from almacenamiento.mongo_almacenamiento import insertar_eventos, contar_eventos_db
 
 # Configuración
 MAX_EVENTOS = 10000

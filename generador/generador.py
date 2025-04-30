@@ -14,7 +14,7 @@ coleccion = db["eventos"]
 r = redis.Redis(host='redis', port=6379, decode_responses=True)
 
 # Parámetros
-MODO = "poisson"  # O "poisson" o "exponencial"
+MODO = "poisson"  # O "poisson" o "normal"
 LAMBDA = 5
 MEDIA_NORMAL = 1.0
 STD_DEV_NORMAL = 0.2

@@ -49,8 +49,8 @@ services:
       - "6379:6379"
     command: >
       redis-server
-      --maxmemory 100mb
-      --maxmemory-policy allkeys-lru
+      --maxmemory 100mb                            
+      --maxmemory-policy allkeys-lfu
     restart: always
 
   cache_monitor:
@@ -62,6 +62,19 @@ services:
       - "7000:7000"
     depends_on:
       - redis
+    restart: on-failure
+    tty: true
+    stdin_open: true
+
+  procesador:
+    build:
+      context: .
+      dockerfile: procesamiento/Dockerfile
+    container_name: procesador
+    depends_on:
+      - mongodb
+    volumes:
+      - ./salida:/app/salida
     restart: on-failure
     tty: true
     stdin_open: true

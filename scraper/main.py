@@ -1,9 +1,6 @@
 from waze_scraper import iniciar_scraper
 
 
-
-
-
 if __name__ == "__main__":
 
 

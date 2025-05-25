@@ -78,3 +78,15 @@ services:
     restart: on-failure
     tty: true
     stdin_open: true
+  pig:
+    build:
+      context: ./pig         
+      dockerfile: Dockerfile 
+    container_name: pig
+    volumes:
+      - ./salida:/data
+    depends_on:
+      - procesador
+    tty: true
+    stdin_open: true
+

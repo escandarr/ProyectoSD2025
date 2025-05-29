@@ -80,13 +80,18 @@ services:
     stdin_open: true
   pig:
     build:
-      context: ./pig         
-      dockerfile: Dockerfile 
+      context: ./pig
+      dockerfile: Dockerfile
     container_name: pig
     volumes:
-      - ./salida:/data
+      - ./pig/script.pig:/data/script.pig
+      - ./salida:/data                    
     depends_on:
       - procesador
+    command: pig -x local /data/script.pig
     tty: true
     stdin_open: true
+
+
+
 

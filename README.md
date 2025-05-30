@@ -81,3 +81,4 @@ redis:
 - Política de cache: `allkeys-lru` `allkeys-lfu`
 
 - Tamaño máximo: `100MB` `50MB`
+# Tarea 2 - Sistema Distribuidos

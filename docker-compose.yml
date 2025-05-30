@@ -91,6 +91,17 @@ services:
     command: pig -x local /data/script.pig
     tty: true
     stdin_open: true
+  visualizador:
+    build:
+      context: ./visualizador
+    container_name: visualizador
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./salida:/data
+    depends_on:
+      - pig
+    restart: on-failure
 
 
 

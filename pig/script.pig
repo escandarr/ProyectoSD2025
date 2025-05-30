@@ -1,6 +1,6 @@
 -- Cargar los eventos desde CSV
 events = LOAD 'eventos_filtrados.csv'
-    USING PigStorage('\t')
+    USING PigStorage(',')
     AS (uuid:chararray, type:chararray, city:chararray, street:chararray, date:chararray, severity:int);
 
 -- Ignorar la cabecera

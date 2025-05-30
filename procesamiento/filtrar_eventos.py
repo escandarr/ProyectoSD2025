@@ -46,11 +46,10 @@ def procesar_eventos():
         return
 
     os.makedirs("salida", exist_ok=True)
-with open("salida/eventos_filtrados.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.DictWriter(f, fieldnames=eventos_limpios[0].keys(), delimiter='\t')
-    writer.writeheader()
-    writer.writerows(eventos_limpios)
-
+    with open("salida/eventos_filtrados.csv", "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=eventos_limpios[0].keys())
+        writer.writeheader()
+        writer.writerows(eventos_limpios)
 
     print(f"✔ Procesamiento completo. Eventos exportados: {len(eventos_limpios)}")
 

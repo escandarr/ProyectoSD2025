@@ -1,16 +1,22 @@
--- Cargar los eventos desde CSV
-events = LOAD 'eventos_filtrados.csv'
-    USING PigStorage(',')
-    AS (uuid:chararray, type:chararray, city:chararray, street:chararray, date:chararray, severity:int);
+-- Cargar CSV sin encabezado desde /data
+raw = LOAD 'eventos_sin_filtrar.csv' 
+      USING PigStorage(',') 
+      AS (uuid:chararray, type:chararray, city:chararray, street:chararray, pubMillis:chararray, severity:int);
 
--- Ignorar la cabecera
-filtered = FILTER events BY uuid != 'uuid';
+-- Filtrar entradas inválidas
+valid = FILTER raw BY 
+    (type IS NOT NULL AND type != '') AND 
+    (city IS NOT NULL AND city != '') AND 
+    (severity IS NOT NULL);
 
--- Agrupar por ciudad
-grouped = GROUP filtered BY city;
+-- Normalizar texto y convertir timestamps
+processed = FOREACH valid GENERATE 
+    uuid, 
+    LOWER(type) AS type, 
+    LOWER(city) AS city, 
+    LOWER(street) AS street,
+    ToDate((long)pubMillis, 'yyyy-MM-dd HH:mm:ss') AS date,
+    severity;
 
--- Contar por ciudad
-counts = FOREACH grouped GENERATE group AS city, COUNT(filtered) AS total;
-
--- Guardar resultado en salida_pig/
-STORE counts INTO 'salida_pig' USING PigStorage(',');
+-- Guardar CSV limpio (eventos_filtrados.csv)
+STORE processed INTO 'eventos_filtrados' USING PigStorage(',');

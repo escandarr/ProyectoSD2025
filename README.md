@@ -83,7 +83,10 @@ redis:
   
 # Tarea 2 - Sistema Distribuidos
   ## Stack de tecnologías usado
+  [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=flat)](https://www.docker.com/)
+  [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white&style=flat)](https://www.mongodb.com/)
+  [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=flat)](https://www.python.org/)
   [![Apache Pig](https://img.shields.io/badge/Apache%20Pig-EE2E2E?style=flat&logo=apacherocketmq&logoColor=white)](https://pig.apache.org/)
-  [![Apache Pig](https://img.shields.io/badge/Apache%20Pig-in%20use-blue?style=flat)](https://pig.apache.org/)
+
 
 

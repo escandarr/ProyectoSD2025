@@ -75,10 +75,13 @@ services:
     container_name: pig
     volumes:
       - ./pig/script.pig:/data/script.pig
+      - ./pig/comuna.pig:/data/comuna.pig
+      - ./pig/tipo.pig:/data/tipo.pig
+      - ./pig/fecha.pig:/data/fecha.pig
       - ./salida:/data
     depends_on:
       - generador
-    command: /opt/pig/bin/pig -x local /data/script.pig
+    command: /bin/bash
     tty: true
     stdin_open: true
 
@@ -89,7 +92,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./salida:/data
+      - ./salida/salida_pig:/data
     depends_on:
       - pig
     restart: on-failure

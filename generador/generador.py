@@ -4,6 +4,9 @@ import numpy as np
 import requests
 import redis
 from pymongo import MongoClient
+import csv
+import os
+from datetime import datetime
 
 # Conexión a MongoDB
 client = MongoClient("mongodb://mongodb:27017/")
@@ -19,6 +22,31 @@ LAMBDA = 5
 MEDIA_NORMAL = 1.0
 STD_DEV_NORMAL = 0.2
 MONITOR_URL = "http://monitor:5000/evento"
+
+
+CSV_SALIDA = "/app/salida/eventos_sin_filtrar.csv"
+
+def exportar_eventos_a_csv():
+    print("[GENERADOR] Exportando eventos sin filtrar a CSV para Pig...")
+    eventos = list(coleccion.find({}))
+    
+    headers = ["uuid", "type", "city", "street", "date", "severity"]
+
+    os.makedirs(os.path.dirname(CSV_SALIDA), exist_ok=True)
+
+    with open(CSV_SALIDA, "w", newline='', encoding="utf-8") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=headers)
+        writer.writeheader()
+        for e in eventos:
+            writer.writerow({
+                "uuid": e.get("uuid", ""),
+                "type": str(e.get("type", "")).lower(),
+                "city": str(e.get("city", "")).lower(),
+                "street": str(e.get("street", "")).lower(),
+                "date": datetime.fromtimestamp(e.get("pubMillis", 0) / 1000.0).strftime("%Y-%m-%d %H:%M:%S"),
+                "severity": e.get("severity", "")
+            })
+    print(f"[GENERADOR] Exportación completa: {CSV_SALIDA}")
 
 def buscar_eventos_random(cantidad):
     total = coleccion.count_documents({})
@@ -69,6 +97,7 @@ def generador_poisson():
 
 def main():
     print(f"[GENERADOR] Iniciando en modo: {MODO}")
+    exportar_eventos_a_csv()  
     if MODO == "poisson":
         generador_poisson()
     elif MODO == "normal":

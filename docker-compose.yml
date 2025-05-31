@@ -27,6 +27,8 @@ services:
     depends_on:
       - mongodb
       - redis
+    volumes:
+      - ./salida:/app/salida
     restart: on-failure
     tty: true
     stdin_open: true
@@ -66,18 +68,6 @@ services:
     tty: true
     stdin_open: true
 
-  procesador:
-    build:
-      context: .
-      dockerfile: procesamiento/Dockerfile
-    container_name: procesador
-    depends_on:
-      - mongodb
-    volumes:
-      - ./salida:/app/salida
-    restart: on-failure
-    tty: true
-    stdin_open: true
   pig:
     build:
       context: ./pig
@@ -85,12 +75,13 @@ services:
     container_name: pig
     volumes:
       - ./pig/script.pig:/data/script.pig
-      - ./salida:/data                    
+      - ./salida:/data
     depends_on:
-      - procesador
-    command: pig -x local /data/script.pig
+      - generador
+    command: /opt/pig/bin/pig -x local /data/script.pig
     tty: true
     stdin_open: true
+
   visualizador:
     build:
       context: ./visualizador
@@ -102,7 +93,3 @@ services:
     depends_on:
       - pig
     restart: on-failure
-
-
-
-

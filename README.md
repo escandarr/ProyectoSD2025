@@ -1,11 +1,12 @@
-# Tarea 1 - Sistema Distribuidos
+
 
 En este repositorio se encuentran todos los códigos implementados para poder levantar cada uno de los sistemas solicitados en cada entrega 
 
   Integrantes:
   * Benjamín Escandar
   * Jorge Gallegos
-
+  * 
+# Tarea 1 - Sistema Distribuidos
   ## Stack de tecnologías usado
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=flat)](https://www.docker.com/)
@@ -81,4 +82,8 @@ redis:
 - Política de cache: `allkeys-lru` `allkeys-lfu`
 
 - Tamaño máximo: `100MB` `50MB`
+  
 # Tarea 2 - Sistema Distribuidos
+  ## Stack de tecnologías usado
+  [![Apache Pig](https://img.shields.io/badge/Apache%20Pig-EE2E2E?style=flat&logo=apacherocketmq&logoColor=white)](https://pig.apache.org/)
+

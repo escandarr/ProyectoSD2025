@@ -1,11 +1,9 @@
-
-
 En este repositorio se encuentran todos los códigos implementados para poder levantar cada uno de los sistemas solicitados en cada entrega 
 
   Integrantes:
   * Benjamín Escandar
   * Jorge Gallegos
-  * 
+   
 # Tarea 1 - Sistema Distribuidos
   ## Stack de tecnologías usado
 
@@ -86,4 +84,6 @@ redis:
 # Tarea 2 - Sistema Distribuidos
   ## Stack de tecnologías usado
   [![Apache Pig](https://img.shields.io/badge/Apache%20Pig-EE2E2E?style=flat&logo=apacherocketmq&logoColor=white)](https://pig.apache.org/)
+  [![Apache Pig](https://img.shields.io/badge/Apache%20Pig-in%20use-blue?style=flat)](https://pig.apache.org/)
+
 

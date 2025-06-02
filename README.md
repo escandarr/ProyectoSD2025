@@ -105,9 +105,8 @@ proyecto\_wazeTest/
 ├── Makefile
 └── README.md
 ```
-## Ejecución paso a paso
-
-### 1. Generar los eventos base
+## Intrucciones de uso
+* Generar los eventos base
 
 ```bash
 cd generador

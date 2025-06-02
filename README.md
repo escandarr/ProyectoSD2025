@@ -96,10 +96,10 @@ redis:
 proyecto\_wazeTest/
 ├── almacenamiento/
 ├── cache\_monitor/
-├── generador/              # Genera eventos\_sin\_filtrar.csv (ajustado)
-├── pig/                    # Contiene scripts Pig (nuevo)
-├── salida/                 # Archivos de salida (este se creara al momento de ejecucion)(nuevo)
-├── visualizador/           # Visualización web con Flask (nuevo)                
+├── generador/              # Esto genera 'eventos\_sin\_filtrar.csv'
+├── pig/                    # Esta carpeta de donde estan los scripts 'Pig'
+├── salida/                 # Aqui estan los archivos de salida, los que se crearan al momento de ejecucion
+├── visualizador/           # Visualización de los datos via web con 'Flask'                 
 ├── scraper/
 ├── docker-compose.yml
 ├── Makefile

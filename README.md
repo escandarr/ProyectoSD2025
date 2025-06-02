@@ -93,7 +93,6 @@ redis:
 ## Estructura de carpetas con los nuevos modulos y ajustes de algunos
 
 ```
-
 proyecto\_wazeTest/
 ├── almacenamiento/
 ├── cache\_monitor/

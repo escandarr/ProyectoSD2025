@@ -96,11 +96,11 @@ redis:
 proyecto\_wazeTest/
 ├── almacenamiento/
 ├── cache\_monitor/
-├── generador/              # Genera eventos\_sin\_filtrar.csv
-├── pig/                    # Contiene scripts Pig
-├── salida/                 # Archivos de salida (filtrados y agregados)
-├── scraper/                # (Opcional) Scraper de Waze
-├── visualizador/           # Visualización web con Flask
+├── generador/              # Genera eventos\_sin\_filtrar.csv (ajustado)
+├── pig/                    # Contiene scripts Pig (nuevo)
+├── salida/                 # Archivos de salida (este se creara al momento de ejecucion)(nuevo)
+├── visualizador/           # Visualización web con Flask (nuevo)                
+├── scraper/
 ├── docker-compose.yml
 ├── Makefile
 └── README.md

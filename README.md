@@ -90,7 +90,7 @@ redis:
 
 ---
 
-## Estructura de carpetas con los nuevos modulos y ajustes de algunos
+## Nueva estructura de carpetas con los nuevos modulos y ajustes de algunos para la presente tarea
 
 ```
 proyecto\_wazeTest/
@@ -114,7 +114,7 @@ docker build -t generador .
 docker run --rm -v $(pwd)/../salida:/app/salida generador
 ````
 
- **Genera**: `salida/eventos_sin_filtrar.csv`
+ **Esto genera**: `salida/eventos_sin_filtrar.csv`
 
 ---
 
@@ -126,7 +126,7 @@ docker build -t pig .
 docker run --rm -v $(pwd)/../salida:/data pig /opt/pig/bin/pig -x local /data/script.pig
 ```
 
- **Genera**: `salida/eventos_filtrados/part-m-00000`
+ **Esto genera**: `salida/eventos_filtrados/part-m-00000`
 
 ---
 
@@ -136,8 +136,7 @@ docker run --rm -v $(pwd)/../salida:/data pig /opt/pig/bin/pig -x local /data/sc
 make
 ```
 
-Esto:
-
+Esto lo que hace es:
 *  Limpia resultados anteriores
 *  Ejecuta análisis por comuna, tipo y fecha
 *  Inicia visualizador Flask
@@ -146,18 +145,16 @@ Esto:
 
 ### 4. Visualizar en el navegador
 
-Abre: [http://localhost:8000](http://localhost:8000)
-
-Verás:
-
+Para poder ver los datos, hay que abrir:
+```bash
+ [http://localhost:8000](http://localhost:8000)
+```
+Dentro, se podrá observar:
 *  Incidentes por Comuna
 *  Incidentes por Tipo
 *  Incidentes por Fecha
 
----
-
 ##  Limpieza
-
 ```bash
 docker-compose down
 make limpiar

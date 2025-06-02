@@ -105,7 +105,7 @@ proyecto\_wazeTest/
 ├── docker-compose.yml
 ├── Makefile
 └── README.md
-
+```
 ## Ejecución paso a paso
 
 ### 1. Generar los eventos base

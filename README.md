@@ -115,7 +115,7 @@ docker build -t generador .
 docker run --rm -v $(pwd)/../salida:/app/salida generador
 ````
 
-📄 **Genera**: `salida/eventos_sin_filtrar.csv`
+ **Genera**: `salida/eventos_sin_filtrar.csv`
 
 ---
 
@@ -127,7 +127,7 @@ docker build -t pig .
 docker run --rm -v $(pwd)/../salida:/data pig /opt/pig/bin/pig -x local /data/script.pig
 ```
 
-📄 **Genera**: `salida/eventos_filtrados/part-m-00000`
+ **Genera**: `salida/eventos_filtrados/part-m-00000`
 
 ---
 
@@ -139,9 +139,9 @@ make
 
 Esto:
 
-* 🔁 Limpia resultados anteriores
-* 📊 Ejecuta análisis por comuna, tipo y fecha
-* 🌐 Inicia visualizador Flask
+*  Limpia resultados anteriores
+*  Ejecuta análisis por comuna, tipo y fecha
+*  Inicia visualizador Flask
 
 ---
 
@@ -151,13 +151,13 @@ Abre: [http://localhost:8000](http://localhost:8000)
 
 Verás:
 
-* 📍 Incidentes por Comuna
-* 🚧 Incidentes por Tipo
-* 📆 Incidentes por Fecha
+*  Incidentes por Comuna
+*  Incidentes por Tipo
+*  Incidentes por Fecha
 
 ---
 
-## 🧹 Limpieza
+##  Limpieza
 
 ```bash
 docker-compose down

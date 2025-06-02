@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Visualización de Incidentes</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    button {
+      margin: 20px 0;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <h1>Visualización de Incidentes</h1>
+  <button onclick="location.reload()">🔄 Actualizar Datos</button>
+
   <h2>Incidentes por Comuna</h2>
-  <canvas id="chart_comuna" width="600" height="300"></canvas>
+  {% if comuna_labels and comuna_values %}
+    <canvas id="chart_comuna" width="600" height="300"></canvas>
+  {% else %}
+    <p>No hay datos disponibles para incidentes por comuna.</p>
+  {% endif %}
 
   <h2>Incidentes por Tipo</h2>
-  <canvas id="chart_tipo" width="600" height="300"></canvas>
+  {% if tipo_labels and tipo_values %}
+    <canvas id="chart_tipo" width="600" height="300"></canvas>
+  {% else %}
+    <p>No hay datos disponibles para incidentes por tipo.</p>
+  {% endif %}
 
   <h2>Incidentes por Fecha</h2>
-  <canvas id="chart_fecha" width="600" height="300"></canvas>
+  {% if fecha_labels and fecha_values %}
+    <canvas id="chart_fecha" width="600" height="300"></canvas>
+  {% else %}
+    <p>No hay datos disponibles para incidentes por fecha.</p>
+  {% endif %}
 
   <script>
+    {% if comuna_labels and comuna_values %}
     const comunaCtx = document.getElementById('chart_comuna').getContext('2d');
     new Chart(comunaCtx, {
       type: 'bar',
@@ -29,7 +54,9 @@
         }]
       }
     });
+    {% endif %}
 
+    {% if tipo_labels and tipo_values %}
     const tipoCtx = document.getElementById('chart_tipo').getContext('2d');
     new Chart(tipoCtx, {
       type: 'bar',
@@ -44,7 +71,9 @@
         }]
       }
     });
+    {% endif %}
 
+    {% if fecha_labels and fecha_values %}
     const fechaCtx = document.getElementById('chart_fecha').getContext('2d');
     new Chart(fechaCtx, {
       type: 'bar',
@@ -59,6 +88,7 @@
         }]
       }
     });
+    {% endif %}
   </script>
 </body>
 </html>

@@ -88,14 +88,16 @@ redis:
   [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=flat)](https://www.python.org/)
   [![Apache Pig](https://img.shields.io/badge/Apache%20Pig-EE2E2E?style=flat&logo=apacherocketmq&logoColor=white)](https://pig.apache.org/)
 
+---
 
+## Estructura de carpetas con los nuevos modulos y ajustes de algunos
 
-## 📁 Estructura de carpetas
+```
 
-proyecto_wazeTest/
+proyecto\_wazeTest/
 ├── almacenamiento/
-├── cache_monitor/
-├── generador/              # Genera eventos_sin_filtrar.csv
+├── cache\_monitor/
+├── generador/              # Genera eventos\_sin\_filtrar.csv
 ├── pig/                    # Contiene scripts Pig
 ├── salida/                 # Archivos de salida (filtrados y agregados)
 ├── scraper/                # (Opcional) Scraper de Waze
@@ -104,48 +106,61 @@ proyecto_wazeTest/
 ├── Makefile
 └── README.md
 
-## ⚙️ Requisitos
-
-- Docker
-- Docker Compose
-
-## 🚀 Ejecución paso a paso
+## Ejecución paso a paso
 
 ### 1. Generar los eventos base
 
+```bash
 cd generador
 docker build -t generador .
 docker run --rm -v $(pwd)/../salida:/app/salida generador
+````
 
-# Genera: salida/eventos_sin_filtrar.csv
+📄 **Genera**: `salida/eventos_sin_filtrar.csv`
+
+---
 
 ### 2. Filtrar eventos con Apache Pig
 
+```bash
 cd ../pig
 docker build -t pig .
 docker run --rm -v $(pwd)/../salida:/data pig /opt/pig/bin/pig -x local /data/script.pig
+```
 
-# Genera: salida/eventos_filtrados/part-m-00000
+📄 **Genera**: `salida/eventos_filtrados/part-m-00000`
+
+---
 
 ### 3. Ejecutar análisis y visualización
 
+```bash
 make
+```
 
-# Esto:
-# - Limpia resultados anteriores
-# - Ejecuta análisis por comuna, tipo y fecha
-# - Inicia visualizador Flask
+Esto:
+
+* 🔁 Limpia resultados anteriores
+* 📊 Ejecuta análisis por comuna, tipo y fecha
+* 🌐 Inicia visualizador Flask
+
+---
 
 ### 4. Visualizar en el navegador
 
-http://localhost:8000
+Abre: [http://localhost:8000](http://localhost:8000)
 
-# Verás:
-# - Incidentes por Comuna
-# - Incidentes por Tipo
-# - Incidentes por Fecha
+Verás:
+
+* 📍 Incidentes por Comuna
+* 🚧 Incidentes por Tipo
+* 📆 Incidentes por Fecha
+
+---
 
 ## 🧹 Limpieza
 
+```bash
 docker-compose down
 make limpiar
+```

@@ -17,17 +17,17 @@ En este repositorio se encuentran todos los códigos implementados para poder le
 
 En la terminal utilizar los siguientes comandos:
 
-* Para clonar repositorio:
+## 1. Para clonar repositorio:
 ```bash
  git clone https://github.com/escandarr/ProyectoSD2025.git 
 ```
-* Desde la carpeta `ProyectoSD2025`, levantar los contenedores con:
+## 2. Desde la carpeta `ProyectoSD2025`, levantar los contenedores con:
 
 ```bash
 sudo docker compose up --build
 ```
 
-* Para ver la cantidad de registros desde la terminal del modulo de almacenamiento (MongoDB) se utiliza los siguientes comandos:
+## 3. Para ver la cantidad de registros desde la terminal del modulo de almacenamiento (MongoDB) se utiliza los siguientes comandos:
 
 ```bash
 sudo docker exec -it mongodb mongosh
@@ -35,7 +35,7 @@ use waze_db
 db.eventos.countDocuments()
 ```
 
-* Para poder ver la los graficos ir a de cache y trafico, copiar estas URL's en el browser respectivamente:
+## 4. Para poder ver la los graficos ir a de cache y trafico, copiar estas URL's en el browser respectivamente:
 
 ```bash
 http://localhost:7000/
@@ -45,8 +45,6 @@ http://localhost:7000/
 http://localhost:5000/
 
 ```
-
-
 ## Parámetros de configuración
 
 * Generador de tráfico (modificables en `generador/generador.py`):
@@ -106,7 +104,7 @@ proyecto\_wazeTest/
 └── README.md
 ```
 ## Intrucciones de uso
-* Generar los eventos base
+## 1. Generar los eventos base
 
 ```bash
 cd generador

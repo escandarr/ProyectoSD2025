@@ -147,7 +147,7 @@ Esto lo que hace es:
 
 Para poder ver los datos, hay que abrir:
 ```bash
- [http://localhost:8000](http://localhost:8000)
+ http://localhost:8000
 ```
 Dentro, se podrá observar:
 *  Incidentes por Comuna

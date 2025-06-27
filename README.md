@@ -4,7 +4,7 @@ En este repositorio se encuentran todos los códigos implementados para poder le
   * Benjamín Escandar
   * Jorge Gallegos
    
-# Tarea 1 - Sistema Distribuidos
+# Tarea 1 - Sistema Distribuidos: Datos y Cache
   ## Stack de tecnologías usado
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=flat)](https://www.docker.com/)
@@ -81,7 +81,7 @@ redis:
 
 ---
   
-# Tarea 2 - Sistema Distribuidos
+# Tarea 2 - Sistema Distribuidos: Procesamiento
   ## Stack de tecnologías usado
   [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=flat)](https://www.docker.com/)
   [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white&style=flat)](https://www.mongodb.com/)
@@ -153,9 +153,25 @@ Dentro, se podrá observar:
 *  Incidentes por Comuna
 *  Incidentes por Tipo
 *  Incidentes por Fecha
-
+  
 ##  Limpieza
 ```bash
 docker-compose down
 make limpiar
 ```
+---
+# Tarea 3 - Sistema Distribuidos: Visualización
+   ## Stack de tecnologías usado
+  [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=flat)](https://www.docker.com/)
+  [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white&style=flat)](https://www.mongodb.com/)
+  [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=flat)](https://www.python.org/)
+  [![Apache Pig](https://img.shields.io/badge/Apache%20Pig-EE2E2E?style=flat&logo=apacherocketmq&logoColor=white)](https://pig.apache.org/)
+  [![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?logo=elasticsearch&logoColor=white&style=flat)](https://www.elastic.co/elasticsearch/)
+[![Kibana](https://img.shields.io/badge/Kibana-005571?logo=kibana&logoColor=white&style=flat)](https://www.elastic.co/kibana/)
+
+## Nueva estructura de carpetas con los nuevos modulos y ajustes de algunos para la presente tarea
+```
+hay que añadir esto
+```
+## Intrucciones de uso
+  

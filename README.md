@@ -174,4 +174,5 @@ make limpiar
 hay que añadir esto
 ```
 ## Intrucciones de uso
+1. Ingresar a Kibana `http://localhost:5601` y crear una “Data View” basada en el índice eventos_filtrados.
   
